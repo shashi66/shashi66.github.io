@@ -1,204 +1,906 @@
-<!DOCTYPE HTML>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shashi Kumar</title>
-  
-  <meta name="author" content="Shashi Kumar">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <meta name="description"
+    content="Shashi Kumar — PhD student at EPFL & Idiap Research Institute. Research on efficient adaptation of foundation models, speech recognition, and SpeechLLMs." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    :root {
+      --bg: #faf9f6;
+      --bg-card: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #555;
+      --text-muted: #888;
+      --accent: #1e3a5f;
+      --accent-light: #2d5a8e;
+      --accent-glow: #1e3a5f18;
+      --border: #e0ddd8;
+      --border-light: #eceae5;
+      --paper-link: #b33a2a;
+      --code-link: #1e6f5c;
+      --award-gold: #a67c00;
+      --serif: 'Newsreader', Georgia, serif;
+      --sans: 'DM Sans', -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --max-w: 820px;
+      --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 249, 246, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-light);
+      padding: 0 2rem;
+    }
+
+    nav .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    nav .nav-name {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--accent);
+      letter-spacing: -0.01em;
+    }
+
+    nav .nav-links {
+      display: flex;
+      gap: 1.6rem;
+    }
+
+    nav .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      transition: color var(--transition);
+    }
+
+    nav .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 4rem 2rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 180px;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .hero-text h1 {
+      font-family: var(--serif);
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-text .subtitle {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      font-style: italic;
+      margin-bottom: 1.4rem;
+      line-height: 1.5;
+    }
+
+    .hero-text .about {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text .about a {
+      color: var(--accent-light);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: border-color var(--transition);
+    }
+
+    .hero-text .about a:hover {
+      border-color: var(--accent-light);
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .hero-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all var(--transition);
+      background: var(--bg-card);
+    }
+
+    .hero-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      box-shadow: 0 2px 10px var(--accent-glow);
+    }
+
+    .hero-links a svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .hero-photo {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hero-photo img {
+      width: 170px;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 3px solid var(--border-light);
+      filter: grayscale(15%);
+      transition: filter var(--transition);
+    }
+
+    .hero-photo img:hover {
+      filter: grayscale(0%);
+    }
+
+    .content {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    section {
+      margin-bottom: 3.5rem;
+    }
+
+    .section-label {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+    }
+
+    /* Research themes */
+    .themes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .theme-card {
+      padding: 1.1rem 1.3rem;
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      background: var(--bg-card);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .theme-card:hover {
+      border-color: var(--border);
+      box-shadow: 0 3px 14px rgba(0, 0, 0, 0.035);
+    }
+
+    .theme-card h3 {
+      font-family: var(--serif);
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+
+    .theme-card p {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* News */
+    .news-list {
+      list-style: none;
+    }
+
+    .news-item {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 0.9rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--border-light);
+      align-items: baseline;
+    }
+
+    .news-item:last-child {
+      border-bottom: none;
+    }
+
+    .news-date {
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    .news-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .news-text strong {
+      color: var(--text);
+    }
+
+    .news-text a {
+      color: var(--paper-link);
+      text-decoration: none;
+    }
+
+    .news-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* Publications */
+    .pub-note {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.4rem;
+    }
+
+    .pub-note a {
+      color: var(--code-link);
+      text-decoration: none;
+    }
+
+    .pub-note a:hover {
+      text-decoration: underline;
+    }
+
+    .pub-item {
+      margin-bottom: 1.6rem;
+      padding: 1.2rem 1.4rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      transition: box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .pub-item:hover {
+      border-color: var(--border);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    .pub-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .pub-year-badge {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      background: var(--accent-glow);
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    .pub-venue {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pub-award {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--award-gold);
+      background: #fdf6e3;
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    .pub-title {
+      font-family: var(--serif);
+      font-size: 1.02rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.45;
+      margin-bottom: 0.3rem;
+    }
+
+    .pub-authors {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.35rem;
+      line-height: 1.5;
+    }
+
+    .pub-authors strong {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .pub-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+
+    .pub-links {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .pub-links a {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity var(--transition);
+    }
+
+    .pub-links a:hover {
+      opacity: 0.7;
+    }
+
+    .pub-links .link-paper {
+      color: var(--paper-link);
+    }
+
+    .pub-links .link-code {
+      color: var(--code-link);
+    }
+
+    /* Awards */
+    .award-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .award-icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      color: var(--award-gold);
+      margin-top: 0.1rem;
+    }
+
+    .award-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    .award-text strong {
+      color: var(--text);
+    }
+
+    .activity-item {
+      margin-bottom: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .activity-item::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .activity-item a {
+      color: var(--paper-link);
+      text-decoration: none;
+    }
+
+    .activity-item a:hover {
+      text-decoration: underline;
+    }
+
+    /* Education */
+    .edu-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1.4rem;
+      padding-bottom: 1.4rem;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .edu-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .edu-year {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      padding-top: 0.15rem;
+    }
+
+    .edu-details h3 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+    }
+
+    .edu-details .edu-inst {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.2rem;
+    }
+
+    .edu-details .edu-note {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    footer {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 2rem;
+      border-top: 1px solid var(--border-light);
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero {
+      animation: fadeUp 0.6s ease-out both;
+    }
+
+    section {
+      animation: fadeUp 0.6s ease-out both;
+    }
+
+    section:nth-child(1) {
+      animation-delay: 0.08s;
+    }
+
+    section:nth-child(2) {
+      animation-delay: 0.14s;
+    }
+
+    section:nth-child(3) {
+      animation-delay: 0.20s;
+    }
+
+    section:nth-child(4) {
+      animation-delay: 0.26s;
+    }
+
+    section:nth-child(5) {
+      animation-delay: 0.32s;
+    }
+
+    @media (max-width: 680px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 2.5rem 1.2rem 2rem;
+      }
+
+      .hero-photo {
+        justify-content: flex-start;
+        order: -1;
+      }
+
+      .hero-photo img {
+        width: 120px;
+        height: 120px;
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .content {
+        padding: 0 1.2rem 3rem;
+      }
+
+      .themes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .edu-item {
+        grid-template-columns: 1fr;
+        gap: 0.3rem;
+      }
+
+      .news-item {
+        grid-template-columns: 1fr;
+        gap: 0.2rem;
+      }
+
+      nav .nav-links {
+        gap: 1rem;
+      }
+
+      nav .nav-links a {
+        font-size: 0.75rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr style="padding:0px">
-      <td style="padding:0px">
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr style="padding:0px">
-            <td style="padding:2.5%;width:63%;vertical-align:middle">
-              <p style="text-align:center">
-                <name>Shashi Kumar</name>
-              </p>
-              <p>I am a Lead ML Engineer at <a href="https://thelevel.ai/" target="_blank" rel="noopener noreferrer">Level AI</a>, where I work on Automatic Speech Recognition (ASR) and Machine Learning.
-              </p>
-              <p>
-                Previously, I was at <a href="https://research.samsung.com/sri-b" target="_blank" rel="noopener noreferrer">Samsung R&D Institute India - Bangalore</a>, where I worked on ASR, Speech Enhancement and Speaker Adaptation under the supervision of <a href="https://www.linkedin.com/in/shakti-p-rath-669b5118/" target="_blank" rel="noopener noreferrer">Dr. Shakti P. Rath</a>.
-                I also participated in <a href="https://dicova2021.github.io/" target="_blank" rel="noopener noreferrer">DiCOVA 2021</a> challenge organized by <a href="https://www.interspeech2021.org/" target="_blank" rel="noopener noreferrer">Interspeech 2021</a> where the aim was to detect COVID-19 using cough sounds. On final <a href="https://competitions.codalab.org/competitions/29640#results" target="_blank" rel="noopener noreferrer">leaderboard</a>, our team was ranked 5th out of 29 teams.
-              </p>
-              <p>
-                I finished my undergrad from Indian Institute of Technology (IIT), Guwahati with a major in <a href="https://www.iitg.ac.in/eee/" target="_blank" rel="noopener noreferrer">Electronics and Communication Engineering (ECE)</a>.
-                I worked on <a href="pdfs/Aesthetic_Rating_and_Emotion_Analysis_using_deep_learning.pdf" target="_blank" rel="noopener noreferrer">Image Aesthetics and Emotion Analysis in Natural Images</a> for my Bachelor Thesis Project under the supervision of <a href="https://www.ee.iitb.ac.in/~asethi/" target="_blank" rel="noopener noreferrer">Prof. Amit Sethi</a>.
-                In the Second year, I interned at <a href="http://www.cvl.cs.chubu.ac.jp/" target="_blank" rel="noopener noreferrer">Chubu University, Japan</a> under the supervision of <a href="https://scholar.google.ca/citations?user=zJZqXJsAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Prof. Yuji Iwahori</a>.
-                I have also worked on <a href="pdfs/resume_shashi.pdf" target="_blank" rel="noopener noreferrer">multiple problems</a> in NLP domain.
-              </p>
-              <p style="text-align:center">
-                <a href="mailto:shashiiitg5572@gmail.com">Email</a> &nbsp/&nbsp
-                <a href="pdfs/CV_shashi.pdf" target="_blank" rel="noopener noreferrer">CV</a> &nbsp/&nbsp
-                <a href="https://scholar.google.co.in/citations?hl=en&pli=1&user=H7NGbnYAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a> &nbsp/&nbsp
-                <a href="https://www.linkedin.com/in/shashikumar4/" target="_blank" rel="noopener noreferrer">Linkedin</a>
-              </p>
-            </td>
-            <td style="padding:2.5%;width:40%;max-width:40%">
-              <a href="images/profile_pic_2_crop.jpg" target="_blank" rel="noopener noreferrer"><img style="width:100%;max-width:100%" alt="profile photo" src="images/profile_pic_2_crop.jpg" class="hoverZoomLink"></a>
-            </td>
-          </tr>
-        </tbody></table>
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
-            <td style="padding:20px;width:100%;vertical-align:middle">
-              <heading>Research</heading>
-              <p>
-                I am deeply interested in research around Machine Learning and its applications in multiple domains. At present, I am working on multiple things like improving factorization of latent spaces for generative models, 
-                improving ASR performance under different conditions, modelling conversational text into DAGs for better understanding.
-                
-              </p>
-            </td>
-          </tr>
-        </tbody></table>
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody> 	
 
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="images/matched_joint_vae.png" alt="joint-vae-ff" width="180" height="120" style="border-style: none">
-            </td>
-            <td width="75%" valign="middle">
-              <a href="https://arxiv.org/abs/2204.11286" id="paper_link_jvae_ff" target="_blank" rel="noopener noreferrer">
-                <papertitle>Improved far-field speech recognition using Joint Variational Autoencoder</papertitle>
-              </a>
-              <br>
-              <strong>Shashi Kumar</strong>,  <a href="https://www.linkedin.com/in/shakti-p-rath-669b5118/" target="_blank" rel="noopener noreferrer">Shakti P. Rath</a>, <a href="https://www.linkedin.com/in/abhishek-pandey-03/" target="_blank" rel="noopener noreferrer">Abhishek Pandey</a>
-              <br>
-              <em>arXiv, 2022</em>
-              <br>
-               <a href="https://arxiv.org/pdf/2204.11286.pdf" target="_blank" rel="noopener noreferrer">pdf</a>
-              <p>We propose joint training of acoustic model (AM) with joint VAE based speech enhancement. Approximations made in original joint VAE formulation has been relaxed and their effects on Word Error Rate (WER) has been analyzed.</p>
-            </td>
-          </tr>
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-name">S. Kumar</span>
+      <div class="nav-links">
+        <a href="#research">Research</a>
+        <a href="#news">News</a>
+        <a href="#publications">Publications</a>
+        <a href="#education">Education</a>
+      </div>
+    </div>
+  </nav>
 
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="images/speaker_norm_paper_jvae.png" alt="joint-vae-speaker" width="180" height="120" style="border-style: none">
-            </td>
-            <td width="75%" valign="middle">
-              <a href="https://www.isca-speech.org/archive/interspeech_2021/kumar21b_interspeech.html" id="paper_link_jvae_speaker" target="_blank" rel="noopener noreferrer">
-                <papertitle>Speaker Normalization Using Joint Variational Autoencoder</papertitle>
-              </a>
-              <br>
-              <strong>Shashi Kumar</strong>,  <a href="https://www.linkedin.com/in/shakti-p-rath-669b5118/" target="_blank" rel="noopener noreferrer">Shakti P. Rath</a>, <a href="https://www.linkedin.com/in/abhishek-pandey-03/" target="_blank" rel="noopener noreferrer">Abhishek Pandey</a>
-              <br>
-              <em>Interspeech, 2021</em>
-              <br>
-               <a href="https://www.youtube.com/watch?v=5oDYSiF1PC4" target="_blank" rel="noopener noreferrer">YouTube Video</a> / <a href="https://www.isca-speech.org/archive/pdfs/interspeech_2021/kumar21b_interspeech.pdf" target="_blank" rel="noopener noreferrer">pdf</a>
-              <p>We propose to map Speaker Independent (SI) features to Speaker Normalized (SN) space. CMLLR normalized space is chosen as SN space. Additionally, we achieve WER similar as Speaker Adaptive Training (SAT) methods in a single pass decoding.</p>
-            </td>
-          </tr>
+  <header class="hero">
+    <div class="hero-text">
+      <h1>Shashi Kumar</h1>
+      <p class="subtitle">Ph.D. Student — EPFL &amp; Idiap Research Institute, Switzerland</p>
+      <p class="about">
+        I am a third-year Ph.D. student at <a href="https://www.epfl.ch/" target="_blank">École Polytechnique Fédérale
+          de Lausanne (EPFL), Lausanne,
+          Switzerland</a> and <a href="https://www.idiap.ch/" target="_blank">Idiap Research Institute, Martigny,
+          Switzerland</a>, advised by
+        <a href="https://people.epfl.ch/andrea.cavallaro/" target="_blank">Prof. Andrea Cavallaro</a> and <a
+          href="https://www.idiap.ch/~pmotlic/" target="_blank">Prof. Petr Motlíček</a>. My research focuses on
+        efficient adaptation of foundation models across speech and language. Before the Ph.D., I worked in
+        industry building and deploying production ASR systems at Samsung Research and Level AI.
+      </p>
+      <div class="hero-links">
+        <a href="mailto:shashi.kumar@epfl.ch">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <polyline points="22,7 12,13 2,7" />
+          </svg>
+          Email
+        </a>
+        <a href="https://scholar.google.com/citations?user=H7NGbnYAAAAJ" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+          </svg>
+          Scholar
+        </a>
+        <a href="https://linkedin.com/in/shashikumar4" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+          LinkedIn
+        </a>
+        <a href="pdfs/resume_shashi_current.pdf" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+          </svg>
+          CV
+        </a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="images/shashi-kumar-pic-web.jpg" alt="Shashi Kumar" />
+    </div>
+  </header>
 
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="images/whisper_paper_Interspeech.png" alt="joint-vae-whisper" width="180" height="120" style="border-style: none">
-            </td>
-            <td width="75%" valign="middle">
-              <a href="https://www.isca-speech.org/archive/interspeech_2021/agrawal21_interspeech.html" id="paper_link_jvae_whisper" target="_blank" rel="noopener noreferrer">
-                <papertitle>Whisper Speech Enhancement Using Joint Variational Autoencoder for Improved Speech Recognition</papertitle>
-              </a>
-              <br>
-              <a href="https://www.linkedin.com/in/vikas-agrawal-b0b44a69/" target="_blank" rel="noopener noreferrer">Vikas Agrawal</a>, <strong>Shashi Kumar</strong>,  <a href="https://www.linkedin.com/in/shakti-p-rath-669b5118/" target="_blank" rel="noopener noreferrer">Shakti P. Rath</a>
-              <br>
-              <em>Interspeech, 2021</em>
-              <br>
-               <a href="https://www.youtube.com/watch?v=nOF2C44RQ_g" target="_blank" rel="noopener noreferrer">YouTube Video</a> / <a href="https://www.isca-speech.org/archive/pdfs/interspeech_2021/agrawal21_interspeech.pdf" target="_blank" rel="noopener noreferrer">pdf</a>
-              <p>To counter lack of formants etc in whisper speech, We propose to map whisper speech to normal speech and train AM jointly with this enhancment model. We show a significant improvement in WER.</p>
-            </td>
-          </tr>
+  <main class="content">
 
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="images/dicova_2021.png" alt="dicova2021" width="180" height="120" style="border-style: none">
-            </td>
-            <td width="75%" valign="middle">
-              <a href="https://arxiv.org/abs/2106.07972" id="dicova_2021" target="_blank" rel="noopener noreferrer">
-                <papertitle>SRIB Submission to Interspeech 2021 DiCOVA Challenge</papertitle>
-              </a>
-              <br>
-              <a href="https://www.linkedin.com/in/vishwanath-pratap-singh-436643ab/" target="_blank" rel="noopener noreferrer">Vishwanath Pratap Singh*</a>, <strong>Shashi Kumar*</strong>,  <a href="https://www.linkedin.com/in/ravi-shekhar-jha/" target="_blank" rel="noopener noreferrer"> Ravi Shekhar Jha*</a>, <a href="https://www.linkedin.com/in/abhishek-pandey-03/" target="_blank" rel="noopener noreferrer">Abhishek Pandey</a>
-              <br>
-              <em>arXiv, 2021</em>
-              <br>
-               <a href="https://dicova2021.github.io/" target="_blank" rel="noopener noreferrer">Challenge Link</a> / <a href="https://competitions.codalab.org/competitions/29640" target="_blank" rel="noopener noreferrer">Leaderboard</a>
-              <p>The main aim of this challenge was to detect covid-19 using cough sounds. Our submission which used an ensemble of multiple models alongwith segment and frame level handcrafted features achieved 5th rank out of 29 teams.</p>
-            </td>
-          </tr>
+    <!-- RESEARCH -->
+    <section id="research">
+      <h2 class="section-label">Research</h2>
+      <div class="themes-grid">
+        <div class="theme-card">
+          <h3>Efficient Adaptation of Foundation Models</h3>
+          <p>Parameter-efficient fine-tuning with factorized latent spaces. My work on FVAE-LoRA (NeurIPS 2025)
+            factorizes task-relevant and residual features in low-rank adapters to improve robustness across modalities.
+          </p>
+        </div>
+        <div class="theme-card">
+          <h3>Speech &amp; Language with LLMs</h3>
+          <p>Understanding how LLMs can be coupled with speech encoders for ASR. I study robustness under domain shift
+            , prompt sensitivity and modality compression in SpeechLLM architectures.</p>
+        </div>
+        <div class="theme-card">
+          <h3>Multitask &amp; Unified Speech Models</h3>
+          <p>Building single models that jointly handle transcription, speaker change detection, endpointing, and entity
+            recognition. Replacing fragile cascaded pipelines (TokenVerse, EMNLP 2024; TokenVerse++, ASRU 2025).</p>
+        </div>
+        <div class="theme-card">
+          <h3>Sequence Alignment with Optimal Transport</h3>
+          <p>A novel differentiable sequence-alignment framework based on 1D optimal transport, enabling the model to
+            learn a single alignment and perform ASR in an E2E manner.</p>
+        </div>
+      </div>
+    </section>
 
-          
+    <!-- NEWS -->
+    <section id="news">
+      <h2 class="section-label">News</h2>
+      <ul class="news-list">
+        <li class="news-item">
+          <span class="news-date">Mar 2026</span>
+          <span class="news-text"><strong>1st place in 3 of 4 tracks</strong> at the DiSPLACE-M Challenge 2026,
+            including diarization and Hindi Devanagari ASR for medical conversations. <a
+              href="https://arxiv.org/abs/2603.06373" target="_blank">[Paper]</a></span>
+        </li>
+        <li class="news-item">
+          <span class="news-date">Jan 2026</span>
+          <span class="news-text">Paper on <strong>reducing prompt sensitivity in LLM-based ASR</strong> accepted at
+            ICASSP 2026. <a href="https://arxiv.org/abs/2601.20898" target="_blank">[Paper]</a></span>
+        </li>
+        <li class="news-item">
+          <span class="news-date">Sep 2025</span>
+          <span class="news-text"><strong>FVAE-LoRA</strong> accepted at NeurIPS 2025. Also received the <strong>Idiap
+              PhD Paper Award</strong>. <a href="https://arxiv.org/abs/2510.19640" target="_blank">[Paper]</a></span>
+        </li>
+        <li class="news-item">
+          <span class="news-date">Apr 2025</span>
+          <span class="news-text"><strong>Best Paper Award</strong> at the SALMA Workshop (ICASSP 2025) for our
+            evaluation of SLAM-ASR. <a href="https://arxiv.org/abs/2411.03866" target="_blank">[Paper]</a></span>
+        </li>
+        <li class="news-item">
+          <span class="news-date">2025</span>
+          <span class="news-text">Presented at <strong>NeurIPS 2025</strong>, <strong>Interspeech 2025</strong>.
+            Reviewer for Interspeech 2025 and ARR.</span>
+        </li>
+        <li class="news-item">
+          <span class="news-date">Sep 2024</span>
+          <span class="news-text"><strong>TokenVerse</strong> accepted at EMNLP 2024. <a
+              href="https://aclanthology.org/2024.emnlp-main.1167/" target="_blank">[Paper]</a></span>
+        </li>
+      </ul>
+    </section>
 
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="images/hetero_loss_mle.png" alt="hetero-enc" width="180" height="120" style="border-style: none">
-            </td>
-            <td width="75%" valign="middle">
-              <a href="https://www.isca-speech.org/archive/interspeech_2019/kumar19_interspeech.html" id="paper_link_hetero_enc" target="_blank" rel="noopener noreferrer">
-                <papertitle>Far-Field Speech Enhancement Using Heteroscedastic Autoencoder for Improved Speech Recognition</papertitle>
-              </a>
-              <br>
-              <strong>Shashi Kumar</strong>,  <a href="https://www.linkedin.com/in/shakti-p-rath-669b5118/" target="_blank" rel="noopener noreferrer">Shakti P. Rath</a>
-              <br>
-              <em>Interspeech, 2019</em>
-              <br>
-               <a href="https://www.isca-speech.org/archive/pdfs/interspeech_2019/kumar19_interspeech.pdf" target="_blank" rel="noopener noreferrer">pdf</a>
-              <p>We propose a more generalized loss based on non-zero mean and heteroscedastic co-variance distribution for the residual variables in regression MLE estimates. We also propose suitable architectures for the final loss. Overall, we show a significant improvement in WER on AMI SDM set.</p>
-            </td>
-          </tr>
+    <!-- PUBLICATIONS -->
+    <section id="publications">
+      <h2 class="section-label">Selected Publications</h2>
+      <p class="pub-note">For a full list, see my <a href="https://scholar.google.com/citations?user=H7NGbnYAAAAJ"
+          target="_blank">Google Scholar</a> profile.</p>
 
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="images/joint-vae-orig.png" alt="joint-vae-orig" width="180" height="120" style="border-style: none">
-            </td>
-            <td width="75%" valign="middle">
-              <a href="https://ieeexplore.ieee.org/abstract/document/9004024" id="paper_link_jvae" target="_blank" rel="noopener noreferrer">
-                <papertitle>Joint Distribution Learning in the Framework of Variational Autoencoders for Far-Field Speech Enhancement</papertitle>
-              </a>
-              <br>
-              <a href="https://www.linkedin.com/in/chelimillamaheshkumar/" target="_blank" rel="noopener noreferrer">Mahesh K. Chelimilla</a>, <strong>Shashi Kumar</strong>,  <a href="https://www.linkedin.com/in/shakti-p-rath-669b5118/" target="_blank" rel="noopener noreferrer">Shakti P. Rath</a>
-              <br>
-              <em>ASRU, 2019</em>
-              <br>
-               <a href="https://ieeexplore.ieee.org/abstract/document/9004024" target="_blank" rel="noopener noreferrer">link</a>
-              <p>We propose novel modifications in the conventional VAE to model joint distribution of the far-field and close-talk features for a common latent space. We show a significant improvement in WER on AMI SDM set.</p>
-            </td>
-          </tr>
+      <div class="pub-item">
+        <div class="pub-header">
+          <span class="pub-year-badge">2025</span>
+          <span class="pub-venue">NeurIPS</span>
+          <span class="pub-award">&#9733; Idiap PhD Paper Award</span>
+        </div>
+        <div class="pub-title">Latent Space Factorization in LoRA</div>
+        <div class="pub-authors"><strong>S. Kumar</strong>, Y. Kaloga, J. Mitros, P. Motlicek, and I. Kodrasi</div>
+        <div class="pub-desc">Proposed FVAE-LoRA, a parameter-efficient fine-tuning method that separates task-relevant
+          and residual features, improving robustness across image, text, and audio tasks.</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2510.19640" class="link-paper" target="_blank">[Paper]</a>
+          <a href="https://github.com/idiap/FVAE-LoRA" class="link-code" target="_blank">[Code]</a>
+        </div>
+      </div>
 
-          <tr>
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <img src="images/pcb_def_paper.png" alt="pcb-def" width="160" height="150" style="border-style: none">
-            </td>
-            <td width="75%" valign="middle">
-              <a href="https://link.springer.com/chapter/10.1007/978-981-10-2104-6_47" id="paper_link_pcb_def" target="_blank" rel="noopener noreferrer">
-                <papertitle>PCB Defect Classification Using Logical Combination of Segmented Copper and Non-copper Part</papertitle>
-              </a>
-              <br>
-              <strong>Shashi Kumar</strong>,  <a href="http://www.cvl.cs.chubu.ac.jp/" target="_blank" rel="noopener noreferrer">Yuji Iwahori</a>, <a href="https://iitg.ac.in/mkb/index.php" target="_blank" rel="noopener noreferrer">M. K. Bhuyan </a>
-              <br>
-              <em>CVIP, 2017</em>
-              <br>
-               <a href="https://www.researchgate.net/profile/Yuji-Iwahori/publication/311857243_PCB_Defect_Classification_Using_Logical_Combination_of_Segmented_Copper_and_Non-copper_Part/links/5a772a2daca2722e4df0fd3d/PCB-Defect-Classification-Using-Logical-Combination-of-Segmented-Copper-and-Non-copper-Part.pdf" target="_blank" rel="noopener noreferrer">pdf</a>
-              <p>We propose handcrafted features to classify defects in PCBs. The proposed approach is deployed in actual Industrial use.</p>
-            </td>
-          </tr>
-					
-        </tbody></table>
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-            <td style="padding:0px">
-              <br>
-              <p style="text-align:left;font-size:small;">
-                Huge thanks to <a href="https://jonbarron.info/" target="_blank" rel="noopener noreferrer">Jon Barron</a> for the template.
-              </p>
-            </td>
-          </tr>
-        </tbody></table>
-      </td>
-    </tr>
-  </table>
+      <div class="pub-item">
+        <div class="pub-header">
+          <span class="pub-year-badge">2025</span>
+          <span class="pub-venue">arXiv Preprint</span>
+        </div>
+        <div class="pub-title">A Differentiable Alignment Framework for Sequence-to-Sequence Modeling via Optimal
+          Transport</div>
+        <div class="pub-authors">Y. Kaloga*, <strong>S. Kumar*</strong>, P. Motlicek, and I. Kodrasi</div>
+        <div class="pub-desc">Introduced a novel differentiable sequence-alignment framework based on 1D optimal
+          transport, enabling end-to-end ASR with learned alignments.</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2502.01588" class="link-paper" target="_blank">[Paper]</a>
+          <a href="https://github.com/idiap/OTTC" class="link-code" target="_blank">[Code]</a>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-header">
+          <span class="pub-year-badge">2025</span>
+          <span class="pub-venue">ICASSP — SALMA Workshop</span>
+          <span class="pub-award">&#9733; Best Paper Award</span>
+        </div>
+        <div class="pub-title">Performance Evaluation of SLAM-ASR: The Good, the Bad, the Ugly, and the Way Forward
+        </div>
+        <div class="pub-authors"><strong>S. Kumar</strong>, et al.</div>
+        <div class="pub-desc">Evaluated SLAM-ASR across domain shifts and speech perturbations, identifying robustness
+          gaps and providing guidance for reliable LLM-based ASR.</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2411.03866" class="link-paper" target="_blank">[Paper]</a>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-header">
+          <span class="pub-year-badge">2024</span>
+          <span class="pub-venue">EMNLP</span>
+        </div>
+        <div class="pub-title">TokenVerse: Towards Unifying Speech and NLP Tasks via Transducer-based ASR</div>
+        <div class="pub-authors"><strong>S. Kumar</strong>, et al.</div>
+        <div class="pub-desc">A transducer-based framework unifying transcription, speaker change detection,
+          endpointing, and NER in a single model, outperforming cascaded pipelines.</div>
+        <div class="pub-links">
+          <a href="https://aclanthology.org/2024.emnlp-main.1167/" class="link-paper" target="_blank">[Paper]</a>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-header">
+          <span class="pub-year-badge">2026</span>
+          <span class="pub-venue">ICASSP</span>
+        </div>
+        <div class="pub-title">Reducing Prompt Sensitivity in LLM-based Speech Recognition Through Learnable Projection
+        </div>
+        <div class="pub-authors">S. Burdisso, E. Villatoro-Tello, <strong>S. Kumar</strong>, et al.</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2601.20898" class="link-paper" target="_blank">[Paper]</a>
+          <a href="https://github.com/idiap/llm-asr-prompt" class="link-code" target="_blank">[Code]</a>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-header">
+          <span class="pub-year-badge">2025</span>
+          <span class="pub-venue">ICASSP</span>
+        </div>
+        <div class="pub-title">XLSR-Transducer: Streaming ASR for Self-Supervised Pretrained Models</div>
+        <div class="pub-authors"><strong>S. Kumar</strong>, et al.</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2407.04439" class="link-paper" target="_blank">[Paper]</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- AWARDS & SERVICE -->
+    <section id="awards">
+      <h2 class="section-label">Awards &amp; Service</h2>
+      <div class="award-item">
+        <svg class="award-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="7" />
+          <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+        </svg>
+        <div class="award-text"><strong>Best Paper Award</strong> — SALMA Workshop at ICASSP 2025</div>
+      </div>
+      <div class="award-item">
+        <svg class="award-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="7" />
+          <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+        </svg>
+        <div class="award-text"><strong>Idiap PhD Paper Award</strong> — for "Latent Space Factorization in LoRA"
+          (NeurIPS 2025)</div>
+      </div>
+      <div style="margin-top: 1.4rem;">
+        <div class="activity-item">Reviewer for Interspeech 2025 and ARR cycles.</div>
+        <div class="activity-item">Presented at NeurIPS 2025, Interspeech 2025, and EMNLP 2024.</div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <h2 class="section-label">Education</h2>
+      <div class="edu-item">
+        <div class="edu-year">Aug 2023 – Present</div>
+        <div class="edu-details">
+          <h3>Doctor of Philosophy (Ph.D.)</h3>
+          <div class="edu-inst">EPFL, Lausanne &amp; Idiap Research Institute, Martigny, Switzerland</div>
+          <div class="edu-note">Advisors: Prof. Andrea Cavallaro, Prof. Petr Motlíček · Expected: Aug 2027</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">Aug 2013 – May 2017</div>
+        <div class="edu-details">
+          <h3>Bachelor of Technology (B.Tech.)</h3>
+          <div class="edu-inst">Indian Institute of Technology (IIT) Guwahati, India</div>
+          <div class="edu-note">Electronics and Communication Engineering (ECE)</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; 2026 Shashi Kumar · <a href="https://shashi66.github.io/">shashi66.github.io</a>
+  </footer>
+
 </body>
 
 </html>
