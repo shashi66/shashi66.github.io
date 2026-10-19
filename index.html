@@ -6,12 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shashi Kumar</title>
   <meta name="description"
-    content="Shashi Kumar — PhD student at EPFL & Idiap Research Institute. Research on efficient adaptation of foundation models, speech recognition, and SpeechLLMs." />
+    content="Shashi Kumar — PhD student at EPFL & Idiap Research Institute. Research on improving the reasoning, efficiency, and robustness of LLMs and multimodal LLMs." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap"
     rel="stylesheet" />
+  <script>
+    // Apply the saved theme before first paint to avoid a flash.
+    try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
   <style>
     *,
     *::before,
@@ -35,16 +39,41 @@
       --paper-link: #b33a2a;
       --code-link: #1e6f5c;
       --award-gold: #a67c00;
+      --award-bg: #fdf6e3;
+      --nav-bg: rgba(250, 249, 246, 0.85);
+      --shadow: rgba(0, 0, 0, 0.04);
+      color-scheme: light;
       --serif: 'Newsreader', Georgia, serif;
       --sans: 'DM Sans', -apple-system, sans-serif;
       --mono: 'JetBrains Mono', monospace;
-      --max-w: 820px;
+      --max-w: 900px;
       --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Light is the default; dark only when the visitor picks it (remembered per browser). */
+    :root[data-theme="dark"] {
+      --bg: #121418;
+      --bg-card: #1a1d23;
+      --text: #e8e6e1;
+      --text-secondary: #b6b3ad;
+      --text-muted: #8c8982;
+      --accent: #8fb3e0;
+      --accent-light: #9cc0ee;
+      --accent-glow: #8fb3e022;
+      --border: #363a44;
+      --border-light: #272b32;
+      --paper-link: #f08f7f;
+      --code-link: #5ec6a8;
+      --award-gold: #e2b94c;
+      --award-bg: #2b2514;
+      --nav-bg: rgba(18, 20, 24, 0.85);
+      --shadow: rgba(0, 0, 0, 0.35);
+      color-scheme: dark;
     }
 
     html {
       scroll-behavior: smooth;
-      font-size: 16px;
+      font-size: 17px;
     }
 
     body {
@@ -60,7 +89,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(250, 249, 246, 0.85);
+      background: var(--nav-bg);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border-light);
       padding: 0 2rem;
@@ -86,13 +115,52 @@
     nav .nav-links {
       display: flex;
       gap: 1.6rem;
+      margin-left: auto;
+    }
+
+    .theme-toggle {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      margin-left: 1.4rem;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: border-color var(--transition), color var(--transition);
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .theme-toggle svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .theme-toggle .sun {
+      display: none;
+    }
+
+    :root[data-theme="dark"] .theme-toggle .sun {
+      display: block;
+    }
+
+    :root[data-theme="dark"] .theme-toggle .moon {
+      display: none;
     }
 
     nav .nav-links a {
-      font-size: 0.82rem;
+      font-size: 0.88rem;
       font-weight: 500;
       color: var(--text-secondary);
       text-decoration: none;
+      white-space: nowrap;
       letter-spacing: 0.03em;
       text-transform: uppercase;
       transition: color var(--transition);
@@ -133,7 +201,7 @@
     }
 
     .hero-text .about {
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       color: var(--text-secondary);
       line-height: 1.8;
       margin-bottom: 1.5rem;
@@ -163,7 +231,7 @@
       padding: 0.45rem 0.9rem;
       border: 1px solid var(--border);
       border-radius: 6px;
-      font-size: 0.82rem;
+      font-size: 0.9rem;
       font-weight: 500;
       color: var(--text-secondary);
       text-decoration: none;
@@ -240,21 +308,28 @@
 
     .theme-card:hover {
       border-color: var(--border);
-      box-shadow: 0 3px 14px rgba(0, 0, 0, 0.035);
+      box-shadow: 0 3px 14px var(--shadow);
     }
 
     .theme-card h3 {
       font-family: var(--serif);
-      font-size: 0.98rem;
+      font-size: 1.08rem;
       font-weight: 600;
       color: var(--text);
       margin-bottom: 0.35rem;
     }
 
     .theme-card p {
-      font-size: 0.84rem;
+      font-size: 0.95rem;
       color: var(--text-secondary);
       line-height: 1.6;
+    }
+
+    .research-note {
+      margin-top: 1.1rem;
+      font-size: 0.98rem;
+      color: var(--text-secondary);
+      font-style: italic;
     }
 
     /* News */
@@ -264,7 +339,7 @@
 
     .news-item {
       display: grid;
-      grid-template-columns: 78px 1fr;
+      grid-template-columns: 92px 1fr;
       gap: 0.9rem;
       padding: 0.7rem 0;
       border-bottom: 1px solid var(--border-light);
@@ -277,12 +352,12 @@
 
     .news-date {
       font-family: var(--mono);
-      font-size: 0.74rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
     }
 
     .news-text {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: var(--text-secondary);
       line-height: 1.55;
     }
@@ -302,7 +377,7 @@
 
     /* Publications */
     .pub-note {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: var(--text-muted);
       margin-bottom: 1.4rem;
     }
@@ -327,7 +402,7 @@
 
     .pub-item:hover {
       border-color: var(--border);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 20px var(--shadow);
     }
 
     .pub-header {
@@ -340,7 +415,7 @@
 
     .pub-year-badge {
       font-family: var(--mono);
-      font-size: 0.72rem;
+      font-size: 0.8rem;
       color: var(--accent);
       background: var(--accent-glow);
       padding: 0.15rem 0.55rem;
@@ -348,7 +423,7 @@
     }
 
     .pub-venue {
-      font-size: 0.78rem;
+      font-size: 0.84rem;
       font-weight: 500;
       color: var(--text-muted);
       text-transform: uppercase;
@@ -356,17 +431,17 @@
     }
 
     .pub-award {
-      font-size: 0.72rem;
+      font-size: 0.8rem;
       font-weight: 600;
       color: var(--award-gold);
-      background: #fdf6e3;
+      background: var(--award-bg);
       padding: 0.15rem 0.55rem;
       border-radius: 4px;
     }
 
     .pub-title {
       font-family: var(--serif);
-      font-size: 1.02rem;
+      font-size: 1.12rem;
       font-weight: 500;
       color: var(--text);
       line-height: 1.45;
@@ -374,7 +449,7 @@
     }
 
     .pub-authors {
-      font-size: 0.84rem;
+      font-size: 0.95rem;
       color: var(--text-secondary);
       margin-bottom: 0.35rem;
       line-height: 1.5;
@@ -386,7 +461,7 @@
     }
 
     .pub-desc {
-      font-size: 0.84rem;
+      font-size: 0.95rem;
       color: var(--text-muted);
       font-style: italic;
       line-height: 1.6;
@@ -400,7 +475,7 @@
     }
 
     .pub-links a {
-      font-size: 0.78rem;
+      font-size: 0.88rem;
       font-weight: 600;
       text-decoration: none;
       transition: opacity var(--transition);
@@ -416,6 +491,10 @@
 
     .pub-links .link-code {
       color: var(--code-link);
+    }
+
+    .pub-links .link-web {
+      color: var(--accent-light);
     }
 
     /* Awards */
@@ -435,7 +514,7 @@
     }
 
     .award-text {
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: var(--text-secondary);
       line-height: 1.55;
     }
@@ -446,7 +525,7 @@
 
     .activity-item {
       margin-bottom: 0.6rem;
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: var(--text-secondary);
       line-height: 1.6;
       padding-left: 1rem;
@@ -461,6 +540,10 @@
       font-weight: 600;
     }
 
+    .activity-item strong {
+      color: var(--text);
+    }
+
     .activity-item a {
       color: var(--paper-link);
       text-decoration: none;
@@ -473,7 +556,7 @@
     /* Education */
     .edu-item {
       display: grid;
-      grid-template-columns: 110px 1fr;
+      grid-template-columns: 130px 1fr;
       gap: 1.2rem;
       margin-bottom: 1.4rem;
       padding-bottom: 1.4rem;
@@ -487,28 +570,50 @@
 
     .edu-year {
       font-family: var(--mono);
-      font-size: 0.78rem;
+      font-size: 0.84rem;
       color: var(--text-muted);
       padding-top: 0.15rem;
     }
 
     .edu-details h3 {
-      font-size: 0.98rem;
+      font-size: 1.08rem;
       font-weight: 600;
       color: var(--text);
       margin-bottom: 0.15rem;
     }
 
     .edu-details .edu-inst {
-      font-size: 0.88rem;
+      font-size: 0.98rem;
       color: var(--text-secondary);
       margin-bottom: 0.2rem;
     }
 
     .edu-details .edu-note {
-      font-size: 0.84rem;
+      font-size: 0.94rem;
       color: var(--text-muted);
       font-style: italic;
+    }
+
+    .exp-points {
+      list-style: none;
+      margin-top: 0.4rem;
+    }
+
+    .exp-points li {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.25rem;
+    }
+
+    .exp-points li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 600;
     }
 
     footer {
@@ -517,7 +622,7 @@
       padding: 2rem;
       border-top: 1px solid var(--border-light);
       text-align: center;
-      font-size: 0.8rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
     }
 
@@ -566,6 +671,10 @@
       animation-delay: 0.32s;
     }
 
+    section:nth-child(6) {
+      animation-delay: 0.38s;
+    }
+
     @media (max-width: 680px) {
       .hero {
         grid-template-columns: 1fr;
@@ -605,12 +714,29 @@
         gap: 0.2rem;
       }
 
+      nav {
+        padding: 0 1rem;
+      }
+
+      nav .nav-name {
+        display: none;
+      }
+
       nav .nav-links {
         gap: 1rem;
+        margin-left: 0;
+        flex: 1;
+        min-width: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .theme-toggle {
+        margin-left: 0.8rem;
       }
 
       nav .nav-links a {
-        font-size: 0.75rem;
+        font-size: 0.8rem;
       }
     }
   </style>
@@ -625,9 +751,21 @@
         <a href="#research">Research</a>
         <a href="#news">News</a>
         <a href="#publications">Publications</a>
-        <a href="#awards">Miscellaneous</a>
+        <a href="#experience">Experience</a>
+        <a href="#awards">Awards &amp; Service</a>
         <a href="#education">Education</a>
       </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4.5" />
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+        </svg>
+      </button>
     </div>
   </nav>
 
@@ -636,14 +774,14 @@
       <h1>Shashi Kumar</h1>
       <p class="subtitle">Ph.D. Student — EPFL &amp; Idiap Research Institute, Switzerland</p>
       <p class="about">
-        I am a third-year Ph.D. student at <a href="https://www.epfl.ch/" target="_blank">École Polytechnique Fédérale
+        I am a fourth-year Ph.D. student at <a href="https://www.epfl.ch/" target="_blank">École Polytechnique Fédérale
           de Lausanne (EPFL), Lausanne,
           Switzerland</a> and <a href="https://www.idiap.ch/" target="_blank">Idiap Research Institute, Martigny,
           Switzerland</a>, advised by
         <a href="https://people.epfl.ch/andrea.cavallaro/" target="_blank">Prof. Andrea Cavallaro</a> and <a
-          href="https://www.idiap.ch/~pmotlic/" target="_blank">Prof. Petr Motlíček</a>. My research focuses on
-        efficient adaptation of foundation models across speech and language. Before the Ph.D., I worked in
-        industry building and deploying production ASR systems at Samsung Research and Level AI.
+          href="https://www.idiap.ch/~pmotlic/" target="_blank">Prof. Petr Motlíček</a>. My research aims to improve
+        the reasoning, efficiency, and robustness of LLMs and multimodal LLMs. Before the Ph.D., I worked in
+        industry training and deploying production ASR systems at scale at Samsung Research and Level AI.
       </p>
       <div class="hero-links">
         <a href="mailto:shashi.kumar@epfl.ch">
@@ -693,33 +831,64 @@
       <h2 class="section-label">Research</h2>
       <div class="themes-grid">
         <div class="theme-card">
-          <h3>Efficient Adaptation of Foundation Models</h3>
-          <p>Parameter-efficient fine-tuning with factorized latent spaces. My work on FVAE-LoRA (NeurIPS 2025)
-            factorizes task-relevant and residual features in low-rank adapters to improve robustness across modalities.
-          </p>
+          <h3>Latent Reasoning</h3>
+          <p>Reasoning in continuous space instead of through explicit tokens. GLR (NeurIPS 2026) frames latent
+            reasoning as a geometric path in the LLM's token-embedding space, anchored by chain-of-thought traces,
+            and yields much shorter generations.</p>
         </div>
         <div class="theme-card">
-          <h3>Speech &amp; Language with LLMs</h3>
-          <p>Understanding how LLMs can be coupled with speech encoders for ASR. I study robustness under domain shift
-            , prompt sensitivity and modality compression in SpeechLLM architectures.</p>
+          <h3>RL-based Post-training</h3>
+          <p>Post-training with reinforcement learning. Using GRPO, we adapt SpeechLLMs on synthetic speech alone and
+            reduce WER by 40% relative to supervised fine-tuning (SLT 2026).</p>
         </div>
         <div class="theme-card">
-          <h3>Multitask &amp; Unified Speech Models</h3>
-          <p>Building single models that jointly handle transcription, speaker change detection, endpointing, and entity
-            recognition. Replacing fragile cascaded pipelines (TokenVerse, EMNLP 2024; TokenVerse++, ASRU 2025).</p>
+          <h3>Test-Time Compute Scaling</h3>
+          <p>Trading inference-time compute for accuracy. LARM, a depth-conditioned looped Transformer, reuses one
+            shared block across recurrent passes so that encoder depth can be scaled at inference time.</p>
         </div>
         <div class="theme-card">
-          <h3>Sequence Alignment with Optimal Transport</h3>
-          <p>A novel differentiable sequence-alignment framework based on 1D optimal transport, enabling the model to
-            learn a single alignment and perform ASR in an E2E manner.</p>
+          <h3>Parameter-Efficient Fine-Tuning</h3>
+          <p>FVAE-LoRA (NeurIPS 2025) factorizes task-relevant and residual features in low-rank adapters, improving
+            robustness and performance across image, text, and audio tasks.</p>
+        </div>
+        <div class="theme-card">
+          <h3>Cross-Modal Alignment with Optimal Transport</h3>
+          <p>OTTC is a differentiable sequence-alignment framework based on 1D optimal transport, enabling the model to
+            learn a single alignment and perform ASR in an end-to-end manner.</p>
+        </div>
+        <div class="theme-card">
+          <h3>Multitask &amp; Streaming ASR</h3>
+          <p>Single models that jointly handle transcription, speaker change detection, endpointing, and NER
+            (TokenVerse, EMNLP 2024; TokenVerse++, ASRU 2025), streaming ASR with self-supervised encoders
+            (XLSR-Transducer), and compressed conversational context for LLM-based ASR (SLT 2026).</p>
         </div>
       </div>
+      <p class="research-note">Currently working on interpretability of cross-modal interactions.</p>
     </section>
 
     <!-- NEWS -->
     <section id="news">
       <h2 class="section-label">News</h2>
       <ul class="news-list">
+        <li class="news-item">
+          <span class="news-date">Sep 2026</span>
+          <span class="news-text"><strong>Geometric Latent Reasoning (GLR)</strong> accepted at NeurIPS 2026. <a
+              href="https://arxiv.org/abs/2606.02248" target="_blank">[Paper]</a> <a href="https://glr-llm.github.io/"
+              target="_blank">[Website]</a></span>
+        </li>
+        <li class="news-item">
+          <span class="news-date">Sep 2026</span>
+          <span class="news-text">Two papers accepted at <strong>IEEE SLT 2026</strong>: <strong>Better Call
+              GRPO</strong> <a href="https://arxiv.org/abs/2607.08409" target="_blank">[Paper]</a> <a
+              href="https://better-call-grpo.github.io/" target="_blank">[Website]</a> and <strong>Distilling
+              Conversations</strong> <a href="https://arxiv.org/abs/2603.26246" target="_blank">[Paper]</a>.</span>
+        </li>
+        <li class="news-item">
+          <span class="news-date">Jun 2026</span>
+          <span class="news-text">New preprint on <strong>test-time compute scaling for ASR</strong> with
+            depth-conditioned looped Transformers (LARM). <a href="https://arxiv.org/abs/2606.04678"
+              target="_blank">[Paper]</a> <a href="https://github.com/idiap/LARM" target="_blank">[Code]</a></span>
+        </li>
         <li class="news-item">
           <span class="news-date">Mar 2026</span>
           <span class="news-text"><strong>1st place in 3 of 4 tracks</strong> at the DiSPLACE-M Challenge 2026,
@@ -758,7 +927,74 @@
     <section id="publications">
       <h2 class="section-label">Selected Publications</h2>
       <p class="pub-note">For a full list, see my <a href="https://scholar.google.com/citations?user=H7NGbnYAAAAJ"
-          target="_blank">Google Scholar</a> profile.</p>
+          target="_blank">Google Scholar</a> profile. * equal contribution.</p>
+
+      <div class="pub-item">
+        <div class="pub-header">
+          <span class="pub-year-badge">2026</span>
+          <span class="pub-venue">NeurIPS</span>
+        </div>
+        <div class="pub-title">Geometric Latent Reasoning Induces Shorter Generations in LLMs</div>
+        <div class="pub-authors"><strong>S. Kumar*</strong>, Y. Kaloga*, P. Motlicek, I. Kodrasi, and A. Cavallaro
+        </div>
+        <div class="pub-desc">Framed latent reasoning as a geometric path in the LLM's token-embedding space, with
+          chain-of-thought traces as anchors. On math benchmarks with Qwen3, GLR needs about 80% fewer generation steps
+          and runs 5.3× faster than explicit chain-of-thought.</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2606.02248" class="link-paper" target="_blank">[Paper]</a>
+          <a href="https://glr-llm.github.io/" class="link-web" target="_blank">[Website]</a>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-header">
+          <span class="pub-year-badge">2026</span>
+          <span class="pub-venue">arXiv Preprint</span>
+        </div>
+        <div class="pub-title">Test-Time Compute Scaling for ASR with Depth-Conditioned Looped Transformers</div>
+        <div class="pub-authors">Y. Kaloga*, <strong>S. Kumar*</strong>, S. A. Sheikh*, D. Khalil, P. Motlicek, and
+          I. Kodrasi</div>
+        <div class="pub-desc">Introduced LARM, a looped Transformer encoder that reuses one shared block across
+          recurrent passes, so encoder depth can be scaled at inference time. On LibriSpeech, it outperforms a 16-block
+          encoder with nearly 4× fewer parameters.</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2606.04678" class="link-paper" target="_blank">[Paper]</a>
+          <a href="https://github.com/idiap/LARM" class="link-code" target="_blank">[Code]</a>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-header">
+          <span class="pub-year-badge">2026</span>
+          <span class="pub-venue">IEEE SLT</span>
+        </div>
+        <div class="pub-title">When Synthetic Speech Is All You Have: Better Call GRPO</div>
+        <div class="pub-authors"><strong>S. Kumar*</strong>, Y. Labrak*, H. Watawana, S. Burdisso, E. Villatoro-Tello,
+          K. Hacioğlu, P. Motlicek, and A. Stolcke</div>
+        <div class="pub-desc">Applied reinforcement learning with GRPO to SpeechLLMs adapted on synthetic speech only.
+          WER drops by 40% relative to supervised fine-tuning, and by 45% when GRPO follows SFT.</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2607.08409" class="link-paper" target="_blank">[Paper]</a>
+          <a href="https://better-call-grpo.github.io/" class="link-web" target="_blank">[Website]</a>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-header">
+          <span class="pub-year-badge">2026</span>
+          <span class="pub-venue">IEEE SLT</span>
+        </div>
+        <div class="pub-title">Distilling Conversations: Abstract Compression of Conversational Audio Context for
+          LLM-based ASR</div>
+        <div class="pub-authors"><strong>S. Kumar</strong>, E. Villatoro-Tello, S. Burdisso, K. Hacioglu, T.
+          Bañeras-Roux, H. Watawana, D. Sanchez-Cortes, S. Madikeri, P. Motlicek, and A. Stolcke</div>
+        <div class="pub-desc">Showed that conversational context mainly helps LLM-based ASR recognize named entities,
+          and introduced Abstract Compression, which replaces prior-turn audio with a fixed number of learned latent
+          tokens, recovering part of the benefit of raw context with a much smaller audio footprint.</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2603.26246" class="link-paper" target="_blank">[Paper]</a>
+        </div>
+      </div>
 
       <div class="pub-item">
         <div class="pub-header">
@@ -811,6 +1047,21 @@
 
       <div class="pub-item">
         <div class="pub-header">
+          <span class="pub-year-badge">2025</span>
+          <span class="pub-venue">ICASSP</span>
+        </div>
+        <div class="pub-title">XLSR-Transducer: Streaming ASR for Self-Supervised Pretrained Models</div>
+        <div class="pub-authors"><strong>S. Kumar</strong>, S. Madikeri, J. Pablo Zuluaga Gomez, E. Villatoro-Tello, I.
+          Thorbecke, P. Motlicek, M. K E, and A. Ganapathiraju</div>
+        <div class="pub-desc">Enabled streaming ASR with self-supervised encoders, outperforming a streaming Zipformer by
+          42% relative WER. Attention sinks halve the left context while improving WER by 12% relative.</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2407.04439" class="link-paper" target="_blank">[Paper]</a>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-header">
           <span class="pub-year-badge">2024</span>
           <span class="pub-venue">EMNLP</span>
         </div>
@@ -824,33 +1075,32 @@
           <a href="https://aclanthology.org/2024.emnlp-main.1167/" class="link-paper" target="_blank">[Paper]</a>
         </div>
       </div>
+    </section>
 
-      <div class="pub-item">
-        <div class="pub-header">
-          <span class="pub-year-badge">2026</span>
-          <span class="pub-venue">ICASSP</span>
-        </div>
-        <div class="pub-title">Reducing Prompt Sensitivity in LLM-based Speech Recognition Through Learnable Projection
-        </div>
-        <div class="pub-authors">S. Burdisso, E. Villatoro-Tello, <strong>S. Kumar</strong>, S. Madikeri, A. Carofilis,
-          P. Rangappa, M. K E, K. Hacioglu, P. Motlicek, and A. Stolcke
-        </div>
-        <div class="pub-links">
-          <a href="https://arxiv.org/abs/2601.20898" class="link-paper" target="_blank">[Paper]</a>
-          <a href="https://github.com/idiap/llm-asr-prompt" class="link-code" target="_blank">[Code]</a>
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <h2 class="section-label">Experience</h2>
+      <div class="edu-item">
+        <div class="edu-year">May 2022 – Apr 2023</div>
+        <div class="edu-details">
+          <h3>Senior ML Engineer → Lead ML Engineer</h3>
+          <div class="edu-inst">Level AI, Remote, California, USA</div>
+          <ul class="exp-points">
+            <li>Led low-resource conversational ASR using domain adaptation and entity-aware transducers.</li>
+            <li>Built the production VAD and speaker diarization pipeline, outperforming the vendor system.</li>
+            <li>Scaled ASR deployment to 120K+ audio hours/month across multiple customer tenants.</li>
+          </ul>
         </div>
       </div>
-
-      <div class="pub-item">
-        <div class="pub-header">
-          <span class="pub-year-badge">2025</span>
-          <span class="pub-venue">ICASSP</span>
-        </div>
-        <div class="pub-title">XLSR-Transducer: Streaming ASR for Self-Supervised Pretrained Models</div>
-        <div class="pub-authors"><strong>S. Kumar</strong>, S. Madikeri, J. Pablo Zuluaga Gomez, E. Villatoro-Tello, I.
-          Thorbecke, P. Motlicek, M. K E, and A. Ganapathiraju</div>
-        <div class="pub-links">
-          <a href="https://arxiv.org/abs/2407.04439" class="link-paper" target="_blank">[Paper]</a>
+      <div class="edu-item">
+        <div class="edu-year">Jun 2017 – Apr 2022</div>
+        <div class="edu-details">
+          <h3>Software Engineer → Lead Software Engineer</h3>
+          <div class="edu-inst">Samsung Research, Bangalore, India</div>
+          <ul class="exp-points">
+            <li>Developed hybrid and end-to-end ASR for accented and far-field speech for Bixby.</li>
+            <li>Built VAE-based speaker normalization for far-field ASR; deployed and published at Interspeech.</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -876,8 +1126,15 @@
           (NeurIPS 2025)</div>
       </div>
       <div style="margin-top: 1.4rem;">
-        <div class="activity-item">Reviewer for Interspeech 2025 and ARR cycles.</div>
-        <div class="activity-item">Presented at NeurIPS 2025, Interspeech 2025, and EMNLP 2024.</div>
+        <div class="activity-item"><strong>Challenges:</strong> DiSPLACE-M Challenge 2026: team ranked 1st in 3 of 4
+          tracks, including diarization and Hindi Devanagari ASR for medical conversations. <a
+            href="https://arxiv.org/abs/2603.06373" target="_blank">[Paper]</a></div>
+        <div class="activity-item"><strong>Challenges:</strong> Interspeech DiCOVA Challenge 2021: ranked 5th out of 29
+          teams in a COVID-19 detection task using cough sounds (AUC 83.93). <a href="https://arxiv.org/abs/2106.07972"
+            target="_blank">[Paper]</a></div>
+        <div class="activity-item"><strong>Reviewer:</strong> NeurIPS, ICLR, ICASSP, Interspeech, EUSIPCO, and ACL
+          Rolling Review (ARR).</div>
+        <div class="activity-item"><strong>Presentations:</strong> NeurIPS 2025, Interspeech 2025, and EMNLP 2024.</div>
       </div>
     </section>
 
@@ -890,6 +1147,7 @@
           <h3>Doctor of Philosophy (Ph.D.)</h3>
           <div class="edu-inst">EPFL, Lausanne &amp; Idiap Research Institute, Martigny, Switzerland</div>
           <div class="edu-note">Advisors: Prof. Andrea Cavallaro, Prof. Petr Motlíček · Expected: Aug 2027</div>
+          <div class="edu-note">Industry collaboration with Uniphore, USA, on SpeechLLMs.</div>
         </div>
       </div>
       <div class="edu-item">
@@ -907,6 +1165,15 @@
   <footer>
     &copy; 2026 Shashi Kumar · <a href="https://shashi66.github.io/">shashi66.github.io</a>
   </footer>
+
+  <script>
+    document.getElementById('themeToggle').addEventListener('click', function () {
+      var root = document.documentElement;
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  </script>
 
 </body>
 
